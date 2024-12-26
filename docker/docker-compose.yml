@@ -1,0 +1,40 @@
+version: '3.1'
+
+services:
+    AgentForge:
+        image: AgentForgeai/AgentForge
+        restart: always
+        environment:
+            - PORT=${PORT}
+            - CORS_ORIGINS=${CORS_ORIGINS}
+            - IFRAME_ORIGINS=${IFRAME_ORIGINS}
+            - AgentForge_USERNAME=${AgentForge_USERNAME}
+            - AgentForge_PASSWORD=${AgentForge_PASSWORD}
+            - AgentForge_FILE_SIZE_LIMIT=${AgentForge_FILE_SIZE_LIMIT}
+            - DEBUG=${DEBUG}
+            - DATABASE_PATH=${DATABASE_PATH}
+            - DATABASE_TYPE=${DATABASE_TYPE}
+            - DATABASE_PORT=${DATABASE_PORT}
+            - DATABASE_HOST=${DATABASE_HOST}
+            - DATABASE_NAME=${DATABASE_NAME}
+            - DATABASE_USER=${DATABASE_USER}
+            - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+            - DATABASE_SSL=${DATABASE_SSL}
+            - DATABASE_SSL_KEY_BASE64=${DATABASE_SSL_KEY_BASE64}
+            - APIKEY_STORAGE_TYPE=${APIKEY_STORAGE_TYPE}
+            - APIKEY_PATH=${APIKEY_PATH}
+            - SECRETKEY_PATH=${SECRETKEY_PATH}
+            - AgentForge_SECRETKEY_OVERWRITE=${AgentForge_SECRETKEY_OVERWRITE}
+            - LOG_LEVEL=${LOG_LEVEL}
+            - LOG_PATH=${LOG_PATH}
+            - BLOB_STORAGE_PATH=${BLOB_STORAGE_PATH}
+            - DISABLE_AgentForge_TELEMETRY=${DISABLE_AgentForge_TELEMETRY}
+            - MODEL_LIST_CONFIG_JSON=${MODEL_LIST_CONFIG_JSON}
+            - GLOBAL_AGENT_HTTP_PROXY=${GLOBAL_AGENT_HTTP_PROXY}
+            - GLOBAL_AGENT_HTTPS_PROXY=${GLOBAL_AGENT_HTTPS_PROXY}
+            - GLOBAL_AGENT_NO_PROXY=${GLOBAL_AGENT_NO_PROXY}
+        ports:
+            - '${PORT}:${PORT}'
+        volumes:
+            - ~/.AgentForge:/root/.AgentForge
+        entrypoint: /bin/sh -c "sleep 3; AgentForge start"
